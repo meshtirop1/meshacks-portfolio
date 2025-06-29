@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | Meshack Tirop - Technical Expertise</title>
+    <meta name="description" content="Explore Meshack Tirop's technical skills in web development, AI, machine learning, and cybersecurity. Interactive skill showcase with proficiency levels.">
+    <link rel="icon" type="image/x-icon" href="../images/fav-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3182ce;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #2d3748;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Skills Hero Section */
+        .skills-hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="2" height="2" x="20" y="20" fill="rgba(255,255,255,0.1)"/><rect width="2" height="2" x="80" y="80" fill="rgba(255,255,255,0.1)"/><rect width="1" height="1" x="40" y="60" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .skills-hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .skills-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .skills-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Filter Buttons */
+        .filter-container {
+            padding: 60px 0 40px;
+            background: #f7fafc;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #4a5568;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #3182ce;
+            color: white;
+            border-color: #3182ce;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(49, 130, 206, 0.3);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border-top: 4px solid #3182ce;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(49, 130, 206, 0.05), rgba(108, 117, 125, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #3182ce, #2c5aa0);
+            color: white;
+        }
+
+        .skill-info h3 {
+            font-size: 1.4rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .skill-level {
+            font-size: 0.9rem;
+            color: #3182ce;
+            font-weight: 600;
+        }
+
+        .skill-progress-container {
+            margin: 1.5rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3182ce, #2c5aa0);
+            border-radius: 6px;
+            width: 0%;
+            transition: width 2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .skill-percentage {
+            position: absolute;
+            right: 0;
+            top: -25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #3182ce;
+        }
+
+        .skill-description {
+            color: #4a5568;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(49, 130, 206, 0.1);
+            color: #3182ce;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Experience Level Indicators */
+        .experience-levels {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .level-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .level-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .level-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .level-title {
+            font-size: 1.3rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .level-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Certifications Section */
+        .certifications {
+            padding: 80px 0;
+            background: #f7fafc;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cert-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #3182ce;
+        }
+
+        .cert-title {
+            font-size: 1.2rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .cert-issuer {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .cert-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .cert-status.in-progress {
+            background: rgba(255, 193, 7, 0.1);
+            color: #856404;
+        }
+
+        .cert-status.planned {
+            background: rgba(108, 117, 125, 0.1);
+            color: #495057;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .mobile-menu.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .mobile-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .levels-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Skills Section Specific Styles */
+        .skills-main {
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Skill Category Indicators */
+        .category-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .category-frontend { background: #61dafb; }
+        .category-backend { background: #68d391; }
+        .category-ai { background: #f093fb; }
+        .category-security { background: #fc8181; }
+        .category-tools { background: #ffd93d; }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">MT</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html" class="active">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Skills Hero Section -->
+        <section class="skills-hero">
+            <div class="container">
+                <div class="skills-hero-content">
+                    <h1>Technical Skills</h1>
+                    <p class="skills-hero-subtitle">
+                        A comprehensive overview of my technical expertise and proficiency levels across various technologies and domains
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-container">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Skills</button>
+                    <button class="filter-btn" data-filter="frontend">Frontend</button>
+                    <button class="filter-btn" data-filter="backend">Backend</button>
+                    <button class="filter-btn" data-filter="ai">AI & ML</button>
+                    <button class="filter-btn" data-filter="security">Security</button>
+                    <button class="filter-btn" data-filter="tools">Tools</button>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="skills-grid" id="skillsGrid">
+                    <!-- Python -->
+                    <div class="skill-card" data-category="backend ai">
+                        <div class="skill-header">
+                            <div class="skill-icon">🐍</div>
+                            <div class="skill-info">
+                                <h3>Python</h3>
+                                <div class="skill-level">Expert Level</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                                <div class="skill-percentage">90%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Advanced proficiency in Python for web development, data analysis, machine learning, and automation. Extensive experience with Django, Flask, NumPy, Pandas, and scikit-learn.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">Data Science</span>
+                            <span class="skill-tag">Automation</span>
+                        </div>
+                    </div>
+
+                    <!-- Django -->
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-header">
+                            <div class="skill-icon">🎯</div>
+                            <div class="skill-info">
+                                <h3>Django</h3>
+                                <div class="skill-level">Advanced</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                                <div class="skill-percentage">85%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Proficient in building robust, scalable web applications with Django. Experience with Django REST Framework, authentication systems, and database optimization.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">REST API</span>
+                            <span class="skill-tag">Authentication</span>
+                            <span class="skill-tag">ORM</span>
+                            <span class="skill-tag">Security</span>
+                        </div>
+                    </div>
+
+                    <!-- HTML & CSS -->
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-header">
+                            <div class="skill-icon">🎨</div>
+                            <div class="skill-info">
+                                <h3>HTML & CSS</h3>
+                                <div class="skill-level">Expert Level</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                                <div class="skill-percentage">95%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Expert-level skills in creating responsive, accessible, and modern web interfaces. Proficient in CSS Grid, Flexbox, animations, and modern CSS methodologies.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Responsive Design</span>
+                            <span class="skill-tag">CSS Grid</span>
+                            <span class="skill-tag">Animations</span>
+                            <span class="skill-tag">Accessibility</span>
+                        </div>
+                    </div>
+
+                    <!-- JavaScript -->
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-header">
+                            <div class="skill-icon">⚡</div>
+                            <div class="skill-info">
+                                <h3>JavaScript</h3>
+                                <div class="skill-level">Advanced</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                                <div class="skill-percentage">80%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Strong JavaScript fundamentals with experience in ES6+, DOM manipulation, async programming, and modern frameworks. Building interactive web applications.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">ES6+</span>
+                            <span class="skill-tag">Async/Await</span>
+                            <span class="skill-tag">APIs</span>
+                            <span class="skill-tag">DOM</span>
+                        </div>
+                    </div>
+
+                    <!-- Machine Learning -->
+                    <div class="skill-card" data-category="ai">
+                        <div class="skill-header">
+                            <div class="skill-icon">🤖</div>
+                            <div class="skill-info">
+                                <h3>Machine Learning</h3>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                                <div class="skill-percentage">75%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Solid understanding of ML algorithms, model training, and deployment. Experience with TensorFlow, scikit-learn, and neural networks for various applications.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Scikit-learn</span>
+                            <span class="skill-tag">Neural Networks</span>
+                            <span class="skill-tag">Data Analysis</span>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity -->
+                    <div class="skill-card" data-category="security">
+                        <div class="skill-header">
+                            <div class="skill-icon">🔒</div>
+                            <div class="skill-info">
+                                <h3>Cybersecurity</h3>
+                                <div class="skill-level">Advanced</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                                <div class="skill-percentage">80%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Strong foundation in cybersecurity principles, threat analysis, and secure coding practices. Currently pursuing specialized degree in cybersecurity.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Threat Analysis</span>
+                            <span class="skill-tag">Secure Coding</span>
+                            <span class="skill-tag">Digital Forensics</span>
+                            <span class="skill-tag">Risk Assessment</span>
+                        </div>
+                    </div>
+
+                    <!-- Git & Version Control -->
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-header">
+                            <div class="skill-icon">📚</div>
+                            <div class="skill-info">
+                                <h3>Git & Version Control</h3>
+                                <div class="skill-level">Advanced</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                                <div class="skill-percentage">85%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Proficient in Git workflows, branching strategies, and collaborative development. Experience with GitHub, GitLab, and team-based version control.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">Branching</span>
+                            <span class="skill-tag">Collaboration</span>
+                            <span class="skill-tag">CI/CD</span>
+                        </div>
+                    </div>
+
+                    <!-- Database Management -->
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-header">
+                            <div class="skill-icon">🗄️</div>
+                            <div class="skill-info">
+                                <h3>Database Management</h3>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                                <div class="skill-percentage">70%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Experience with SQL databases (PostgreSQL, MySQL) and NoSQL solutions. Database design, optimization, and data modeling for web applications.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Data Modeling</span>
+                            <span class="skill-tag">Optimization</span>
+                        </div>
+                    </div>
+
+                    <!-- Linux & Command Line -->
+                    <div class="skill-card" data-category="tools">
+                        <div class="skill-header">
+                            <div class="skill-icon">🐧</div>
+                            <div class="skill-info">
+                                <h3>Linux & Command Line</h3>
+                                <div class="skill-level">Advanced</div>
+                            </div>
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress" data-width="82"></div>
+                                <div class="skill-percentage">82%</div>
+                            </div>
+                        </div>
+                        <p class="skill-description">
+                            Proficient in Linux system administration, shell scripting, and command-line tools. Experience with server management and automation scripts.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Bash Scripting</span>
+                            <span class="skill-tag">System Admin</span>
+                            <span class="skill-tag">Automation</span>
+                            <span class="skill-tag">Server Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Levels -->
+        <section class="experience-levels">
+            <div class="container">
+                <h2 class="section-title">Proficiency Levels</h2>
+                <p class="section-subtitle">Understanding my skill ratings and what they represent</p>
+
+                <div class="levels-grid">
+                    <div class="level-card">
+                        <span class="level-icon">🚀</span>
+                        <h3 class="level-title">Expert (90%+)</h3>
+                        <p class="level-description">
+                            Can lead projects, mentor others, and solve complex problems independently. Deep understanding of best practices and advanced concepts.
+                        </p>
+                    </div>
+
+                    <div class="level-card">
+                        <span class="level-icon">⭐</span>
+                        <h3 class="level-title">Advanced (80-89%)</h3>
+                        <p class="level-description">
+                            Proficient in most aspects, can work independently on complex tasks, and contribute to architectural decisions.
+                        </p>
+                    </div>
+
+                    <div class="level-card">
+                        <span class="level-icon">📈</span>
+                        <h3 class="level-title">Intermediate (70-79%)</h3>
+                        <p class="level-description">
+                            Solid foundation with practical experience. Can handle most common tasks with occasional guidance on complex issues.
+                        </p>
+                    </div>
+
+                    <div class="level-card">
+                        <span class="level-icon">🌱</span>
+                        <h3 class="level-title">Learning (60-69%)</h3>
+                        <p class="level-description">
+                            Basic understanding with hands-on experience. Actively developing skills through projects and continuous learning.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="certifications">
+            <div class="container">
+                <h2 class="section-title">Certifications & Learning Path</h2>
+                <p class="section-subtitle">Current certifications and planned professional development</p>
+
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <div class="cert-icon">🎓</div>
+                        <h3 class="cert-title">Computer Engineering Degree</h3>
+                        <p class="cert-issuer">Kyungdong University, South Korea</p>
+                        <span class="cert-status in-progress">In Progress (2022-2026)</span>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">🔐</div>
+                        <h3 class="cert-title">Cybersecurity & Digital Forensics</h3>
+                        <p class="cert-issuer">The Open University of Kenya</p>
+                        <span class="cert-status in-progress">In Progress (2023-2026)</span>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">🐍</div>
+                        <h3 class="cert-title">Python Professional Certification</h3>
+                        <p class="cert-issuer">Python Institute</p>
+                        <span class="cert-status planned">Planned 2024</span>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">☁️</div>
+                        <h3 class="cert-title">AWS Cloud Practitioner</h3>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                        <span class="cert-status planned">Planned 2024</span>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">🛡️</div>
+                        <h3 class="cert-title">CompTIA Security+</h3>
+                        <p class="cert-issuer">CompTIA</p>
+                        <span class="cert-status planned">Planned 2025</span>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">🤖</div>
+                        <h3 class="cert-title">TensorFlow Developer Certificate</h3>
+                        <p class="cert-issuer">Google</p>
+                        <span class="cert-status planned">Planned 2024</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Meshack Tirop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                initializeSkills();
+            }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Skills Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+                filterSkills(filter);
+            });
+        });
+
+        function filterSkills(category) {
+            skillCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+
+                setTimeout(() => {
+                    if (category === 'all' || card.getAttribute('data-category').includes(category)) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }, 200);
+            });
+        }
+
+        // Skill Progress Bar Animation
+        function animateSkillBars() {
+            const progressBars = document.querySelectorAll('.skill-progress');
+
+            progressBars.forEach((bar, index) => {
+                const targetWidth = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = targetWidth + '%';
+                }, index * 200);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('skill-card')) {
+                        setTimeout(() => {
+                            entry.target.classList.add('show');
+                        }, Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100);
+                    } else if (entry.target.classList.contains('level-card') || entry.target.classList.contains('cert-card')) {
+                        setTimeout(() => {
+                            entry.target.classList.add('show');
+                        }, Array.from(entry.target.parentNode.children).indexOf(entry.target) * 150);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        function initializeSkills() {
+            // Start skill bar animations
+            setTimeout(() => {
+                animateSkillBars();
+            }, 500);
+
+            // Observe skill cards
+            document.querySelectorAll('.skill-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Observe level cards
+            document.querySelectorAll('.level-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Observe certification cards
+            document.querySelectorAll('.cert-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Show skill cards with stagger
+            setTimeout(() => {
+                document.querySelectorAll('.skill-card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('show');
+                    }, index * 100);
+                });
+            }, 1000);
+        }
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+
+            // Add background on scroll
+            if (scrollTop > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        // Dynamic skill level calculation
+        function calculateSkillLevel(percentage) {
+            if (percentage >= 90) return 'Expert Level';
+            if (percentage >= 80) return 'Advanced';
+            if (percentage >= 70) return 'Intermediate';
+            if (percentage >= 60) return 'Learning';
+            return 'Beginner';
+        }
+
+        // Skill card hover effects
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const progressBar = this.querySelector('.skill-progress');
+                if (progressBar) {
+                    progressBar.style.boxShadow = '0 0 20px rgba(49, 130, 206, 0.5)';
+                }
+            });
+
+            card.addEventListener('mouseleave', function() {
+                const progressBar = this.querySelector('.skill-progress');
+                if (progressBar) {
+                    progressBar.style.boxShadow = 'none';
+                }
+            });
+        });
+
+        // Add random shimmer effects to skill bars
+        function addShimmerEffects() {
+            const progressBars = document.querySelectorAll('.skill-progress');
+
+            progressBars.forEach(bar => {
+                setInterval(() => {
+                    bar.style.animation = 'none';
+                    setTimeout(() => {
+                        bar.style.animation = '';
+                    }, 100);
+                }, Math.random() * 10000 + 5000);
+            });
+        }
+
+        // Initialize shimmer effects
+        setTimeout(addShimmerEffects, 2000);
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Keyboard navigation for filter buttons
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '1' && e.key <= '6') {
+                const buttonIndex = parseInt(e.key) - 1;
+                const buttons = document.querySelectorAll('.filter-btn');
+                if (buttons[buttonIndex]) {
+                    buttons[buttonIndex].click();
+                }
+            }
+        });
+
+        // Performance optimization
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Optimized scroll handler
+        const debouncedScroll = debounce(function() {
+            // Additional scroll-based effects can go here
+        }, 10);
+
+        window.addEventListener('scroll', debouncedScroll);
+
+        // Add accessibility improvements
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.setAttribute('role', 'button');
+            btn.setAttribute('aria-pressed', 'false');
+
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
+                this.setAttribute('aria-pressed', 'true');
+            });
+        });
+
+        // Skills search functionality (bonus feature)
+        function createSearchBox() {
+            const filterContainer = document.querySelector('.filter-buttons');
+            const searchBox = document.createElement('input');
+            searchBox.type = 'text';
+            searchBox.placeholder = 'Search skills...';
+            searchBox.style.cssText = `
+                padding: 12px 24px;
+                border: 2px solid #e2e8f0;
+                border-radius: 50px;
+                margin-left: 1rem;
+                font-size: 0.95rem;
+                outline: none;
+                transition: all 0.3s ease;
+            `;
+
+            searchBox.addEventListener('focus', function() {
+                this.style.borderColor = '#3182ce';
+                this.style.boxShadow = '0 0 0 3px rgba(49, 130, 206, 0.1)';
+            });
+
+            searchBox.addEventListener('blur', function() {
+                this.style.borderColor = '#e2e8f0';
+                this.style.boxShadow = 'none';
+            });
+
+            searchBox.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                skillCards.forEach(card => {
+                    const skillName = card.querySelector('h3').textContent.toLowerCase();
+                    const skillTags = Array.from(card.querySelectorAll('.skill-tag'))
+                        .map(tag => tag.textContent.toLowerCase()).join(' ');
+
+                    if (skillName.includes(searchTerm) || skillTags.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            filterContainer.appendChild(searchBox);
+        }
+
+        // Initialize search box
+        setTimeout(createSearchBox, 1500);
+
+        // Add skill tooltips
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.boxShadow = '0 4px 8px rgba(49, 130, 206, 0.2)';
+            });
+
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Error handling and fallbacks
+        window.addEventListener('error', function(e) {
+            console.log('Error caught:', e.error);
+            // Fallback behavior if needed
+        });
+
+        // Analytics tracking (placeholder)
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.filter-btn, .skill-card, .cert-card')) {
+                // Analytics tracking would go here
+                console.log('User interaction:', e.target.className);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education | Meshack Tirop - Academic Journey</title>
+    <meta name="description" content="Explore Meshack Tirop's educational background including Computer Engineering in South Korea and Cybersecurity studies. Academic achievements and learning journey.">
+    <link rel="icon" type="image/x-icon" href="../images/fav-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3182ce;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #2d3748;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Education Hero Section */
+        .education-hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="rgba(255,255,255,0.05)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="30" r="2" fill="rgba(255,255,255,0.05)"/><circle cx="30" cy="70" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .education-hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .education-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .education-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .education-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: countUp 2s ease-out;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #63b3ed;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Current Studies Overview */
+        .current-studies {
+            padding: 80px 0;
+            background: #f7fafc;
+        }
+
+        .studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .study-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #3182ce, #2c5aa0);
+        }
+
+        .study-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .study-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .study-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3182ce, #2c5aa0);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.3);
+        }
+
+        .study-info h3 {
+            font-size: 1.4rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .study-university {
+            color: #3182ce;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .study-duration {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(49, 130, 206, 0.1);
+            color: #3182ce;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .study-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .study-highlights {
+            margin: 1.5rem 0;
+        }
+
+        .study-highlights h4 {
+            font-size: 1.1rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .highlights-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlights-list li {
+            padding: 0.5rem 0;
+            color: #4a5568;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .highlights-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #38a169;
+            font-weight: bold;
+        }
+
+        .progress-section {
+            margin-top: 1.5rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3182ce, #2c5aa0);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 2s ease;
+        }
+
+        /* Academic Timeline */
+        .timeline-section {
+            padding: 80px 0;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #3182ce, #2c5aa0);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 50%;
+            padding-right: 30px;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 50%;
+            padding-left: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #3182ce;
+            border: 4px solid #ffffff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.2);
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-dot:hover {
+            transform: translateX(-50%) scale(1.2);
+            box-shadow: 0 0 0 8px rgba(49, 130, 206, 0.2);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-year {
+            color: #3182ce;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .timeline-location {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Achievements Section */
+        .achievements {
+            padding: 80px 0;
+            background: #f7fafc;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .achievement-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .achievement-title {
+            font-size: 1.2rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .achievement-description {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        /* Skills Gained Section */
+        .skills-gained {
+            padding: 80px 0;
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skills-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .skills-category.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skills-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3182ce, #2c5aa0);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(49, 130, 206, 0.1);
+            color: #3182ce;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #3182ce;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Study Abroad Experience */
+        .study-abroad {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #3182ce, #2c5aa0);
+            color: white;
+        }
+
+        .abroad-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .abroad-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .abroad-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .cultural-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cultural-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .cultural-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .cultural-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .cultural-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .cultural-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .mobile-menu.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .mobile-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .studies-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 30px;
+                margin-right: 0;
+                padding-left: 20px;
+                padding-right: 20px;
+                text-align: left;
+            }
+
+            .timeline-line {
+                left: 15px;
+            }
+
+            .timeline-dot {
+                left: 15px;
+            }
+
+            .education-stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .achievements-grid,
+            .skills-categories,
+            .cultural-highlights {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(2deg); }
+            66% { transform: translateY(10px) rotate(-2deg); }
+        }
+
+        @keyframes countUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a365d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Interactive Elements */
+        .interactive-map {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .map-placeholder {
+            background: #e2e8f0;
+            padding: 3rem;
+            border-radius: 12px;
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+
+        /* GPA Display */
+        .gpa-display {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #38a169, #2f855a);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        /* Course Highlights */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .course-item {
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 3px solid #3182ce;
+            transition: all 0.3s ease;
+        }
+
+        .course-item:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+
+        .course-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.25rem;
+        }
+
+        .course-description {
+            font-size: 0.85rem;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">MT</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="education.html" class="active">Education</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Education Hero Section -->
+        <section class="education-hero">
+            <div class="container">
+                <div class="education-hero-content">
+                    <h1>🎓 My Educational Journey</h1>
+                    <p class="education-hero-subtitle">
+                        Pursuing excellence in computer engineering and cybersecurity across two continents, building a strong foundation for technological innovation
+                    </p>
+
+                    <div class="education-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="2">0</span>
+                            <span class="stat-label">Degree Programs</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="2">0</span>
+                            <span class="stat-label">Countries</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="4">0</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Studies -->
+        <section class="current-studies">
+            <div class="container">
+                <h2 class="section-title">Current Studies</h2>
+                <p class="section-subtitle">
+                    Currently pursuing dual degrees in cutting-edge technology fields, combining theoretical knowledge with practical application
+                </p>
+
+                <div class="studies-grid">
+                    <!-- Computer Engineering Degree -->
+                    <div class="study-card">
+                        <div class="study-header">
+                            <div class="study-icon">💻</div>
+                            <div class="study-info">
+                                <h3>Bachelor of Computer Engineering</h3>
+                                <div class="study-university">Kyungdong University, South Korea</div>
+                            </div>
+                        </div>
+
+                        <div class="study-duration">September 2022 - August 2026</div>
+
+                        <p class="study-description">
+                            Specializing in Smart Computing with a focus on emerging technologies, artificial intelligence, and innovative software solutions. This program combines theoretical computer science with hands-on engineering applications.
+                        </p>
+
+                        <div class="study-highlights">
+                            <h4>Program Highlights:</h4>
+                            <ul class="highlights-list">
+                                <li>Advanced algorithms and data structures</li>
+                                <li>Machine learning and artificial intelligence</li>
+                                <li>Software engineering and system design</li>
+                                <li>Database management and optimization</li>
+                                <li>International collaboration projects</li>
+                                <li>Industry partnerships and internships</li>
+                            </ul>
+                        </div>
+
+                        <div class="course-grid">
+                            <div class="course-item">
+                                <div class="course-name">Smart Computing Systems</div>
+                                <div class="course-description">IoT and embedded systems</div>
+                            </div>
+                            <div class="course-item">
+                                <div class="course-name">AI Programming</div>
+                                <div class="course-description">Machine learning algorithms</div>
+                            </div>
+                            <div class="course-item">
+                                <div class="course-name">Software Engineering</div>
+                                <div class="course-description">Project management & design</div>
+                            </div>
+                            <div class="course-item">
+                                <div class="course-name">Database Systems</div>
+                                <div class="course-description">Advanced SQL & NoSQL</div>
+                            </div>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="60"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity Degree -->
+                    <div class="study-card">
+                        <div class="study-header">
+                            <div class="study-icon">🔒</div>
+                            <div class="study-info">
+                                <h3>Bachelor of Cybersecurity & Digital Forensics</h3>
+                                <div class="study-university">The Open University of Kenya</div>
+                            </div>
+                        </div>
+
+                        <div class="study-duration">June 2023 - January 2026</div>
+
+                        <p class="study-description">
+                            Comprehensive program focusing on digital security, threat analysis, and forensic investigation techniques. Building expertise in protecting digital assets and investigating cyber crimes.
+                        </p>
+
+                        <div class="study-highlights">
+                            <h4>Program Highlights:</h4>
+                            <ul class="highlights-list">
+                                <li>Network security and penetration testing</li>
+                                <li>Digital forensics and incident response</li>
+                                <li>Cybercrime investigation techniques</li>
+                                <li>Risk assessment and management</li>
+                                <li>Ethical hacking and vulnerability assessment</li>
+                                <li>Legal aspects of cybersecurity</li>
+                            </ul>
+                        </div>
+
+                        <div class="course-grid">
+                            <div class="course-item">
+                                <div class="course-name">Network Security</div>
+                                <div class="course-description">Firewall & intrusion detection</div>
+                            </div>
+                            <div class="course-item">
+                                <div class="course-name">Digital Forensics</div>
+                                <div class="course-description">Evidence collection & analysis</div>
+                            </div>
+                            <div class="course-item">
+                                <div class="course-name">Ethical Hacking</div>
+                                <div class="course-description">Penetration testing tools</div>
+                            </div>
+                            <div class="course-item">
+                                <div class="course-name">Cyber Law</div>
+                                <div class="course-description">Legal frameworks & compliance</div>
+                            </div>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <span>45%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="45"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Educational Timeline -->
+        <section class="timeline-section">
+            <div class="container">
+                <h2 class="section-title">Academic Timeline</h2>
+                <p class="section-subtitle">
+                    A chronological journey through my educational milestones and achievements
+                </p>
+
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2022 - Present</div>
+                            <h3 class="timeline-title">Computer Engineering Studies Begin</h3>
+                            <p class="timeline-description">
+                                Started Bachelor's degree in Computer Engineering (Smart Computing) at Kyungdong University. First international academic experience, adapting to Korean educational system and culture.
+                            </p>
+                            <div class="timeline-location">📍 Kyungdong University, South Korea</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2023</div>
+                            <h3 class="timeline-title">Cybersecurity Specialization</h3>
+                            <p class="timeline-description">
+                                Enrolled in Bachelor's program for Cybersecurity and Digital Forensics at The Open University of Kenya. Pursuing dual degrees to combine software development with security expertise.
+                            </p>
+                            <div class="timeline-location">📍 The Open University of Kenya (Online)</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2021 - 2022</div>
+                            <h3 class="timeline-title">Pre-University Preparation</h3>
+                            <p class="timeline-description">
+                                Intensive preparation for international studies including Korean language learning, advanced mathematics, and computer science fundamentals. Achieved required proficiency levels for university admission.
+                            </p>
+                            <div class="timeline-location">📍 Kenya & Online Preparation</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020 - 2021</div>
+                            <h3 class="timeline-title">Foundation in Technology</h3>
+                            <p class="timeline-description">
+                                Completed secondary education with exceptional performance in mathematics and sciences. Developed initial programming skills and discovered passion for computer technology and cybersecurity.
+                            </p>
+                            <div class="timeline-location">📍 Kenya</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Achievements -->
+        <section class="achievements">
+            <div class="container">
+                <h2 class="section-title">Academic Achievements</h2>
+                <p class="section-subtitle">
+                    Recognition and milestones achieved throughout my educational journey
+                </p>
+
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <span class="achievement-icon">🏆</span>
+                        <h3 class="achievement-title">International Scholarship</h3>
+                        <p class="achievement-description">
+                            Awarded merit-based scholarship for Computer Engineering studies in South Korea
+                        </p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <span class="achievement-icon">🌟</span>
+                        <h3 class="achievement-title">Dean's List</h3>
+                        <p class="achievement-description">
+                            Consistent academic excellence with GPA above 3.7 in Computer Engineering program
+                        </p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <span class="achievement-icon">🚀</span>
+                        <h3 class="achievement-title">Innovation Project</h3>
+                        <p class="achievement-description">
+                            Led team project on AI-powered e-commerce platform, receiving top marks for innovation
+                        </p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <span class="achievement-icon">🌍</span>
+                        <h3 class="achievement-title">Cultural Bridge</h3>
+                        <p class="achievement-description">
+                            Successfully adapted to international academic environment while maintaining cultural identity
+                        </p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <span class="achievement-icon">📚</span>
+                        <h3 class="achievement-title">Research Participation</h3>
+                        <p class="achievement-description">
+                            Active participant in university research projects on smart computing and AI applications
+                        </p>
+                    </div>
+
+                    <div class="achievement-card">
+                        <span class="achievement-icon">🤝</span>
+                        <h3 class="achievement-title">Peer Mentor</h3>
+                        <p class="achievement-description">
+                            Mentoring junior students in programming and helping international students adapt
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Gained Through Education -->
+        <section class="skills-gained">
+            <div class="container">
+                <h2 class="section-title">Skills Acquired Through Education</h2>
+                <p class="section-subtitle">
+                    Technical and soft skills developed through comprehensive academic programs
+                </p>
+
+                <div class="skills-categories">
+                    <div class="skills-category">
+                        <div class="category-header">
+                            <div class="category-icon">💻</div>
+                            <h3 class="category-title">Programming & Development</h3>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Git</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <div class="category-header">
+                            <div class="category-icon">🤖</div>
+                            <h3 class="category-title">AI & Machine Learning</h3>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">Scikit-learn</span>
+                            <span class="skill-tag">Neural Networks</span>
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Data Analysis</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">NLP</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <div class="category-header">
+                            <div class="category-icon">🔒</div>
+                            <h3 class="category-title">Cybersecurity</h3>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag">Network Security</span>
+                            <span class="skill-tag">Penetration Testing</span>
+                            <span class="skill-tag">Digital Forensics</span>
+                            <span class="skill-tag">Vulnerability Assessment</span>
+                            <span class="skill-tag">Incident Response</span>
+                            <span class="skill-tag">Risk Management</span>
+                            <span class="skill-tag">Ethical Hacking</span>
+                            <span class="skill-tag">Cryptography</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <div class="category-header">
+                            <div class="category-icon">🗄️</div>
+                            <h3 class="category-title">Data & Systems</h3>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">System Design</span>
+                            <span class="skill-tag">API Development</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <div class="category-header">
+                            <div class="category-icon">🌐</div>
+                            <h3 class="category-title">Soft Skills</h3>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag">Cross-cultural Communication</span>
+                            <span class="skill-tag">Project Management</span>
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Team Collaboration</span>
+                            <span class="skill-tag">Research & Analysis</span>
+                            <span class="skill-tag">Presentation Skills</span>
+                            <span class="skill-tag">Adaptability</span>
+                            <span class="skill-tag">Leadership</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <div class="category-header">
+                            <div class="category-icon">🗣️</div>
+                            <h3 class="category-title">Languages</h3>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag">English (Fluent)</span>
+                            <span class="skill-tag">Korean (Intermediate)</span>
+                            <span class="skill-tag">Swahili (Native)</span>
+                            <span class="skill-tag">Technical Writing</span>
+                            <span class="skill-tag">Academic Writing</span>
+                            <span class="skill-tag">Documentation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Abroad Experience -->
+        <section class="study-abroad">
+            <div class="container">
+                <div class="abroad-content">
+                    <h2>🌏 International Study Experience</h2>
+                    <p>
+                        Studying in South Korea has been a transformative experience that has broadened my perspective on technology, culture, and global collaboration. Living and learning in a different culture has enhanced my adaptability and cross-cultural communication skills.
+                    </p>
+                    <p>
+                        The Korean educational system's emphasis on innovation and technology has perfectly complemented my passion for cutting-edge computing solutions. This international exposure has prepared me to work in diverse, global teams and understand technology from multiple cultural perspectives.
+                    </p>
+
+                    <div class="cultural-highlights">
+                        <div class="cultural-item">
+                            <span class="cultural-icon">🏫</span>
+                            <h3 class="cultural-title">Academic Excellence</h3>
+                            <p class="cultural-description">
+                                Experiencing Korea's advanced educational technology and research-focused learning environment
+                            </p>
+                        </div>
+
+                        <div class="cultural-item">
+                            <span class="cultural-icon">🤝</span>
+                            <h3 class="cultural-title">Global Networking</h3>
+                            <p class="cultural-description">
+                                Building relationships with students and professors from diverse international backgrounds
+                            </p>
+                        </div>
+
+                        <div class="cultural-item">
+                            <span class="cultural-icon">🌸</span>
+                            <h3 class="cultural-title">Cultural Immersion</h3>
+                            <p class="cultural-description">
+                                Learning Korean language and culture while maintaining my African heritage and identity
+                            </p>
+                        </div>
+
+                        <div class="cultural-item">
+                            <span class="cultural-icon">🚀</span>
+                            <h3 class="cultural-title">Innovation Hub</h3>
+                            <p class="cultural-description">
+                                Access to cutting-edge technology and innovation ecosystem in one of Asia's tech capitals
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Meshack Tirop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                initializeEducation();
+            }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 30;
+                let current = 0;
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 50);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                updateCounter();
+            });
+        }
+
+        // Progress Bar Animation
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+
+            progressBars.forEach((bar, index) => {
+                const targetWidth = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = targetWidth + '%';
+                }, index * 500 + 1000);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('timeline-item')) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, Array.from(entry.target.parentNode.children).indexOf(entry.target) * 200);
+                    } else if (entry.target.classList.contains('study-card')) {
+                        setTimeout(() => {
+                            entry.target.classList.add('show');
+                        }, Array.from(entry.target.parentNode.children).indexOf(entry.target) * 300);
+                    } else if (entry.target.classList.contains('achievement-card')) {
+                        setTimeout(() => {
+                            entry.target.classList.add('show');
+                        }, Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100);
+                    } else if (entry.target.classList.contains('skills-category')) {
+                        setTimeout(() => {
+                            entry.target.classList.add('show');
+                        }, Array.from(entry.target.parentNode.children).indexOf(entry.target) * 150);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        function initializeEducation() {
+            // Start counter animation
+            setTimeout(animateCounters, 1000);
+
+            // Start progress bar animations
+            setTimeout(animateProgressBars, 2000);
+
+            // Observe elements for animations
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+
+            document.querySelectorAll('.study-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            document.querySelectorAll('.achievement-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            document.querySelectorAll('.skills-category').forEach(category => {
+                observer.observe(category);
+            });
+        }
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+
+            if (scrollTop > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        // Timeline dot interactions
+        document.querySelectorAll('.timeline-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const content = this.parentNode.querySelector('.timeline-content');
+                content.style.background = '#f0f8ff';
+                setTimeout(() => {
+                    content.style.background = 'white';
+                }, 1000);
+            });
+
+            // Add tooltip functionality
+            dot.addEventListener('mouseenter', function() {
+                const year = this.parentNode.querySelector('.timeline-year').textContent;
+                const title = this.parentNode.querySelector('.timeline-title').textContent;
+
+                // Create tooltip
+                const tooltip = document.createElement('div');
+                tooltip.innerHTML = `<strong>${year}</strong><br>${title}`;
+                tooltip.style.cssText = `
+                    position: absolute;
+                    background: #2d3748;
+                    color: white;
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    font-size: 0.8rem;
+                    pointer-events: none;
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    white-space: nowrap;
+                `;
+
+                document.body.appendChild(tooltip);
+
+                // Position tooltip
+                const rect = this.getBoundingClientRect();
+                tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + 'px';
+                tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+
+                setTimeout(() => {
+                    tooltip.style.opacity = '1';
+                }, 10);
+
+                this.tooltip = tooltip;
+            });
+
+            dot.addEventListener('mouseleave', function() {
+                if (this.tooltip) {
+                    this.tooltip.remove();
+                    this.tooltip = null;
+                }
+            });
+        });
+
+        // Skill tag interactions
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const skill = this.textContent;
+                alert(`You clicked on: ${skill}\n\nThis skill was acquired through hands-on projects and coursework during my academic journey.`);
+            });
+        });
+
+        // Course item interactions
+        document.querySelectorAll('.course-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const courseName = this.querySelector('.course-name').textContent;
+                const courseDesc = this.querySelector('.course-description').textContent;
+
+                // Highlight the clicked course
+                document.querySelectorAll('.course-item').forEach(i => i.style.background = '#f7fafc');
+                this.style.background = '#e6fffa';
+
+                setTimeout(() => {
+                    this.style.background = '#f7fafc';
+                }, 2000);
+            });
+        });
+
+        // Achievement card flip effect
+        document.querySelectorAll('.achievement-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'rotateY(180deg)';
+                setTimeout(() => {
+                    this.style.transform = 'rotateY(0deg)';
+                }, 600);
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.education-hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Add study abroad highlight effect
+        function highlightStudyAbroad() {
+            const abroadSection = document.querySelector('.study-abroad');
+            if (abroadSection) {
+                abroadSection.style.boxShadow = '0 0 50px rgba(49, 130, 206, 0.3)';
+                setTimeout(() => {
+                    abroadSection.style.boxShadow = 'none';
+                }, 3000);
+            }
+        }
+
+        // Highlight study abroad section periodically
+        setInterval(highlightStudyAbroad, 15000);
+
+        // Keyboard navigation for timeline
+        let currentTimelineIndex = -1;
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                currentTimelineIndex = Math.min(currentTimelineIndex + 1, timelineItems.length - 1);
+                focusTimelineItem(timelineItems[currentTimelineIndex]);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                currentTimelineIndex = Math.max(currentTimelineIndex - 1, 0);
+                focusTimelineItem(timelineItems[currentTimelineIndex]);
+            }
+        });
+
+        function focusTimelineItem(item) {
+            // Remove focus from other items
+            timelineItems.forEach(i => {
+                i.style.outline = 'none';
+                i.querySelector('.timeline-content').style.background = 'white';
+            });
+
+            // Focus current item
+            if (item) {
+                item.style.outline = '3px solid #3182ce';
+                item.querySelector('.timeline-content').style.background = '#f0f8ff';
+                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Reset focus when clicking
+        document.addEventListener('click', function() {
+            currentTimelineIndex = -1;
+            timelineItems.forEach(item => {
+                item.style.outline = 'none';
+                item.querySelector('.timeline-content').style.background = 'white';
+            });
+        });
+
+        // Add dynamic GPA display
+        function updateGPA() {
+            const gpaElements = document.querySelectorAll('.gpa-display');
+            gpaElements.forEach(element => {
+                const currentGPA = 3.75; // Example GPA
+                element.textContent = `Current GPA: ${currentGPA}/4.0`;
+            });
+        }
+
+        // Educational statistics
+        function calculateEducationStats() {
+            const totalCourses = document.querySelectorAll('.course-item').length;
+            const totalSkills = document.querySelectorAll('.skill-tag').length;
+            const achievements = document.querySelectorAll('.achievement-card').length;
+
+            console.log(`Education Statistics:
+                - Courses Completed: ${totalCourses}
+                - Skills Acquired: ${totalSkills}
+                - Achievements: ${achievements}`);
+        }
+
+        // Initialize statistics
+        setTimeout(calculateEducationStats, 3000);
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Performance optimization
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        const debouncedScroll = debounce(function() {
+            // Additional scroll-based effects can go here
+        }, 10);
+
+        window.addEventListener('scroll', debouncedScroll);
+
+        // Error handling
+        window.addEventListener('error', function(e) {
+            console.log('Error caught:', e.error);
+        });
+
+        // Analytics tracking
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.timeline-dot, .achievement-card, .skill-tag, .course-item')) {
+                console.log('User interaction:', e.target.className);
+            }
+        });
+    </script>
+</body>
+</html>

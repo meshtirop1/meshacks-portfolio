@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Meshack Tirop - Portfolio Showcase</title>
+    <meta name="description" content="Explore Meshack Tirop's portfolio of web development, AI, and cybersecurity projects. Interactive showcase with live demos and source code.">
+    <link rel="icon" type="image/x-icon" href="../images/fav-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3182ce;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #2d3748;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Projects Hero Section */
+        .projects-hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="20,20 30,10 40,20 30,30" fill="rgba(255,255,255,0.05)"/><polygon points="60,60 70,50 80,60 70,70" fill="rgba(255,255,255,0.05)"/><polygon points="10,70 20,60 30,70 20,80" fill="rgba(255,255,255,0.05)"/></svg>');
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .projects-hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .projects-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .projects-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: countUp 2s ease-out;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #63b3ed;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Filter and Sort Section */
+        .controls-section {
+            padding: 60px 0 40px;
+            background: #f7fafc;
+        }
+
+        .controls-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #4a5568;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #3182ce;
+            color: white;
+            border-color: #3182ce;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(49, 130, 206, 0.3);
+        }
+
+        .sort-dropdown {
+            position: relative;
+        }
+
+        .sort-btn {
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .sort-btn:hover {
+            border-color: #3182ce;
+        }
+
+        .sort-options {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            z-index: 100;
+        }
+
+        .sort-options.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .sort-option {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-bottom: 1px solid #f7fafc;
+        }
+
+        .sort-option:hover {
+            background: #f7fafc;
+        }
+
+        .sort-option:last-child {
+            border-bottom: none;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+        }
+
+        .project-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card.featured {
+            grid-column: span 2;
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        .status-completed { color: #38a169; }
+        .status-ongoing { color: #3182ce; }
+        .status-planned { color: #d69e2e; }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(49, 130, 206, 0.1);
+            color: #3182ce;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .project-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features {
+            margin: 1.5rem 0;
+        }
+
+        .project-features h4 {
+            font-size: 1rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .project-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-features li {
+            padding: 0.25rem 0;
+            color: #4a5568;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #38a169;
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3182ce, #2c5aa0);
+            color: white;
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(49, 130, 206, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #3182ce;
+            border: 2px solid #3182ce;
+        }
+
+        .btn-secondary:hover {
+            background: #3182ce;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-disabled {
+            background: #e2e8f0;
+            color: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* More Projects CTA */
+        .more-projects-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #3182ce, #2c5aa0);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: white;
+            color: #3182ce;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .mobile-menu.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .mobile-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-card.featured {
+                grid-column: span 1;
+            }
+
+            .controls-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .sort-dropdown {
+                align-self: center;
+            }
+
+            .stats-container {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 250px;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+
+        @keyframes countUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #2d3748;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Search Box */
+        .search-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .search-box {
+            padding: 12px 24px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .search-box:focus {
+            border-color: #3182ce;
+            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #4a5568;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        /* Project Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #4a5568;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #2d3748;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">MT</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Projects Hero Section -->
+        <section class="projects-hero">
+            <div class="container">
+                <div class="projects-hero-content">
+                    <h1>My Projects</h1>
+                    <p class="projects-hero-subtitle">
+                        A showcase of my technical expertise through real-world applications and innovative solutions
+                    </p>
+
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="15">0</span>
+                            <span class="stat-label">Projects Built</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="8">0</span>
+                            <span class="stat-label">Technologies Used</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="3">0</span>
+                            <span class="stat-label">Live Deployments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls Section -->
+        <section class="controls-section">
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" id="searchBox" class="search-box" placeholder="Search projects by name or technology...">
+                </div>
+
+                <div class="controls-container">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn" data-filter="web">Web Apps</button>
+                        <button class="filter-btn" data-filter="ai">AI & ML</button>
+                        <button class="filter-btn" data-filter="mobile">Mobile</button>
+                        <button class="filter-btn" data-filter="security">Security</button>
+                    </div>
+
+                    <div class="sort-dropdown">
+                        <div class="sort-btn" id="sortBtn">
+                            <span>Sort by: Latest</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                        <div class="sort-options" id="sortOptions">
+                            <div class="sort-option" data-sort="latest">Latest First</div>
+                            <div class="sort-option" data-sort="oldest">Oldest First</div>
+                            <div class="sort-option" data-sort="name">Name A-Z</div>
+                            <div class="sort-option" data-sort="complexity">Complexity</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Featured Project -->
+                    <div class="project-card featured" data-category="web ai" data-date="2024" data-complexity="5">
+                        <div class="project-image">
+                            <div class="project-placeholder">🛍️</div>
+                            <div class="project-status status-completed">Completed</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div class="project-tags">
+                                    <span class="project-tag">Django</span>
+                                    <span class="project-tag">Flask</span>
+                                    <span class="project-tag">AI Chatbot</span>
+                                    <span class="project-tag">PostgreSQL</span>
+                                    <span class="project-tag">REST API</span>
+                                </div>
+                                <h2 class="project-title">E-commerce Platform with AI Chatbot</h2>
+                            </div>
+                            <p class="project-description">
+                                A comprehensive Django-based e-commerce platform integrated with a Flask-powered AI chatbot, delivering an intelligent shopping experience with real-time customer support and personalized recommendations.
+                            </p>
+                            <div class="project-features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Full e-commerce functionality with shopping cart and checkout</li>
+                                    <li>AI-powered chatbot for customer support and product recommendations</li>
+                                    <li>Real-time chat integration with Flask backend</li>
+                                    <li>Responsive design optimized for all devices</li>
+                                    <li>Secure payment processing and user authentication</li>
+                                    <li>Admin dashboard for inventory and order management</li>
+                                </ul>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/meshtirop1/ecommerce-with-ia-chatbot" target="_blank" class="btn btn-primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                    </svg>
+                                    View Source Code
+                                </a>
+                                <a href="#" class="btn btn-secondary btn-disabled">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                                    </svg>
+                                    Live Demo (Coming Soon)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pay Management App -->
+                    <div class="project-card" data-category="mobile" data-date="2023" data-complexity="3">
+                        <div class="project-image">
+                            <div class="project-placeholder">💰</div>
+                            <div class="project-status status-completed">Completed</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div class="project-tags">
+                                    <span class="project-tag">Kivy</span>
+                                    <span class="project-tag">Python</span>
+                                    <span class="project-tag">SQLite</span>
+                                    <span class="project-tag">Mobile</span>
+                                </div>
+                                <h2 class="project-title">Pay Management Application</h2>
+                            </div>
+                            <p class="project-description">
+                                A Kivy-based mobile application for personal time and salary management, featuring work hour tracking, salary calculations, and historical data management with an intuitive user interface.
+                            </p>
+                            <div class="project-features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Time tracking with start/stop functionality</li>
+                                    <li>Automatic salary calculation based on minimum wage</li>
+                                    <li>Monthly navigation and historical data view</li>
+                                    <li>Cross-platform mobile compatibility</li>
+                                    <li>Data persistence with SQLite database</li>
+                                </ul>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/meshtirop1/pay_app" target="_blank" class="btn btn-primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                    </svg>
+                                    View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MNIST Digit Classification -->
+                    <div class="project-card" data-category="ai" data-date="2024" data-complexity="4">
+                        <div class="project-image">
+                            <div class="project-placeholder">🧠</div>
+                            <div class="project-status status-completed">Completed</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div class="project-tags">
+                                    <span class="project-tag">TensorFlow</span>
+                                    <span class="project-tag">Python</span>
+                                    <span class="project-tag">Machine Learning</span>
+                                    <span class="project-tag">Neural Networks</span>
+                                </div>
+                                <h2 class="project-title">MNIST Digit Classification</h2>
+                            </div>
+                            <p class="project-description">
+                                A neural network implementation using TensorFlow for handwritten digit classification, demonstrating modular code organization, machine learning best practices, and model optimization techniques.
+                            </p>
+                            <div class="project-features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Modular neural network architecture</li>
+                                    <li>Data preprocessing and augmentation</li>
+                                    <li>Model training with validation metrics</li>
+                                    <li>Performance visualization and analysis</li>
+                                    <li>Easy hyperparameter tuning</li>
+                                </ul>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/meshtirop1/MNIST-Digit-Classification-with-TensorFlow" target="_blank" class="btn btn-primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                    </svg>
+                                    View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weather Dashboard -->
+                    <div class="project-card" data-category="web" data-date="2023" data-complexity="3">
+                        <div class="project-image">
+                            <div class="project-placeholder">🌤️</div>
+                            <div class="project-status status-ongoing">In Progress</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div class="project-tags">
+                                    <span class="project-tag">React</span>
+                                    <span class="project-tag">API Integration</span>
+                                    <span class="project-tag">JavaScript</span>
+                                    <span class="project-tag">CSS3</span>
+                                </div>
+                                <h2 class="project-title">Weather Dashboard</h2>
+                            </div>
+                            <p class="project-description">
+                                A responsive weather dashboard built with React, featuring real-time weather data, 5-day forecasts, and location-based weather updates with an intuitive and modern interface.
+                            </p>
+                            <div class="project-features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Real-time weather data from OpenWeather API</li>
+                                    <li>5-day weather forecast with hourly details</li>
+                                    <li>Geolocation support for automatic location detection</li>
+                                    <li>Search functionality for different cities</li>
+                                    <li>Responsive design with smooth animations</li>
+                                </ul>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary btn-disabled">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                    </svg>
+                                    Coming Soon
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity Scanner -->
+                    <div class="project-card" data-category="security" data-date="2024" data-complexity="5">
+                        <div class="project-image">
+                            <div class="project-placeholder">🔒</div>
+                            <div class="project-status status-planned">Planned</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div class="project-tags">
+                                    <span class="project-tag">Python</span>
+                                    <span class="project-tag">Cybersecurity</span>
+                                    <span class="project-tag">Network Security</span>
+                                    <span class="project-tag">Penetration Testing</span>
+                                </div>
+                                <h2 class="project-title">Network Security Scanner</h2>
+                            </div>
+                            <p class="project-description">
+                                A comprehensive network security scanning tool designed for cybersecurity professionals, featuring vulnerability assessment, network mapping, and automated security reporting capabilities.
+                            </p>
+                            <div class="project-features">
+                                <h4>Planned Features:</h4>
+                                <ul>
+                                    <li>Network discovery and port scanning</li>
+                                    <li>Vulnerability assessment and reporting</li>
+                                    <li>Automated security recommendations</li>
+                                    <li>Integration with security frameworks</li>
+                                    <li>Real-time threat monitoring dashboard</li>
+                                </ul>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary btn-disabled">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    In Planning
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Website -->
+                    <div class="project-card" data-category="web" data-date="2024" data-complexity="4">
+                        <div class="project-image">
+                            <div class="project-placeholder">🌐</div>
+                            <div class="project-status status-ongoing">In Progress</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div class="project-tags">
+                                    <span class="project-tag">HTML5</span>
+                                    <span class="project-tag">CSS3</span>
+                                    <span class="project-tag">JavaScript</span>
+                                    <span class="project-tag">Responsive Design</span>
+                                </div>
+                                <h2 class="project-title">Professional Portfolio Website</h2>
+                            </div>
+                            <p class="project-description">
+                                A modern, responsive portfolio website showcasing my skills, projects, and professional journey. Built with vanilla JavaScript and modern CSS techniques for optimal performance and accessibility.
+                            </p>
+                            <div class="project-features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Responsive design across all devices</li>
+                                    <li>Interactive animations and smooth transitions</li>
+                                    <li>SEO optimized with semantic HTML</li>
+                                    <li>Fast loading with optimized assets</li>
+                                    <li>Contact form with email integration</li>
+                                </ul>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                                    </svg>
+                                    You're Here!
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <h3>No projects found</h3>
+                    <p>Try adjusting your search or filter criteria</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Projects CTA -->
+        <section class="more-projects-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Interested in Collaborating?</h2>
+                    <p>
+                        I'm always excited to work on new projects and explore innovative solutions. Let's build something amazing together!
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-white">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            Start a Project
+                        </a>
+                        <a href="https://github.com/meshtirop1" target="_blank" class="btn btn-outline">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            View All on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Meshack Tirop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Project Details</h2>
+                <span class="modal-close" id="modalClose">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                initializeProjects();
+            }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Projects Data
+        const projectsData = [
+            {
+                title: "E-commerce Platform with AI Chatbot",
+                category: "web ai",
+                date: "2024",
+                complexity: 5,
+                status: "completed",
+                tags: ["Django", "Flask", "AI Chatbot", "PostgreSQL", "REST API"],
+                description: "A comprehensive Django-based e-commerce platform integrated with a Flask-powered AI chatbot...",
+                github: "https://github.com/meshtirop1/ecommerce-with-ia-chatbot"
+            },
+            // Add more projects here...
+        ];
+
+        // Filter and Search Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const searchBox = document.getElementById('searchBox');
+        const emptyState = document.getElementById('emptyState');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+                filterProjects(filter, searchBox.value);
+            });
+        });
+
+        searchBox.addEventListener('input', function() {
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            filterProjects(activeFilter, this.value);
+        });
+
+        function filterProjects(category, searchTerm = '') {
+            let visibleCount = 0;
+
+            projectCards.forEach((card, index) => {
+                const cardCategory = card.getAttribute('data-category') || '';
+                const cardTitle = card.querySelector('.project-title').textContent.toLowerCase();
+                const cardTags = Array.from(card.querySelectorAll('.project-tag'))
+                    .map(tag => tag.textContent.toLowerCase()).join(' ');
+
+                const matchesCategory = category === 'all' || cardCategory.includes(category);
+                const matchesSearch = !searchTerm ||
+                    cardTitle.includes(searchTerm.toLowerCase()) ||
+                    cardTags.includes(searchTerm.toLowerCase());
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.classList.add('show');
+                    }, index * 100);
+                    visibleCount++;
+                } else {
+                    card.classList.remove('show');
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 200);
+                }
+            });
+
+            // Show/hide empty state
+            emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // Sort Functionality
+        const sortBtn = document.getElementById('sortBtn');
+        const sortOptions = document.getElementById('sortOptions');
+
+        sortBtn.addEventListener('click', function() {
+            sortOptions.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!sortBtn.contains(e.target) && !sortOptions.contains(e.target)) {
+                sortOptions.classList.remove('show');
+            }
+        });
+
+        document.querySelectorAll('.sort-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const sortType = this.getAttribute('data-sort');
+                sortProjects(sortType);
+                sortBtn.querySelector('span').textContent = `Sort by: ${this.textContent}`;
+                sortOptions.classList.remove('show');
+            });
+        });
+
+        function sortProjects(sortType) {
+            const grid = document.getElementById('projectsGrid');
+            const cards = Array.from(projectCards);
+
+            cards.sort((a, b) => {
+                switch (sortType) {
+                    case 'latest':
+                        return parseInt(b.getAttribute('data-date')) - parseInt(a.getAttribute('data-date'));
+                    case 'oldest':
+                        return parseInt(a.getAttribute('data-date')) - parseInt(b.getAttribute('data-date'));
+                    case 'name':
+                        return a.querySelector('.project-title').textContent.localeCompare(
+                            b.querySelector('.project-title').textContent
+                        );
+                    case 'complexity':
+                        return parseInt(b.getAttribute('data-complexity')) - parseInt(a.getAttribute('data-complexity'));
+                    default:
+                        return 0;
+                }
+            });
+
+            // Re-append cards in new order
+            cards.forEach(card => grid.appendChild(card));
+        }
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 30;
+                let current = 0;
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 50);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                updateCounter();
+            });
+        }
+
+        // Project Modal
+        const modal = document.getElementById('projectModal');
+        const modalClose = document.getElementById('modalClose');
+
+        modalClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Initialize Projects
+        function initializeProjects() {
+            // Start counter animation
+            setTimeout(animateCounters, 1000);
+
+            // Show project cards with stagger
+            setTimeout(() => {
+                projectCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('show');
+                    }, index * 150);
+                });
+            }, 1500);
+        }
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+
+            if (scrollTop > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch (e.key) {
+                    case '1':
+                        e.preventDefault();
+                        filterButtons[0].click();
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        filterButtons[1].click();
+                        break;
+                    case 'f':
+                        e.preventDefault();
+                        searchBox.focus();
+                        break;
+                }
+            }
+        });
+
+        // Add project hover effects
+        projectCards.forEach(card => {
+            const projectImage = card.querySelector('.project-image');
+
+            card.addEventListener('mouseenter', function() {
+                if (projectImage) {
+                    projectImage.style.transform = 'scale(1.05)';
+                }
+            });
+
+            card.addEventListener('mouseleave', function() {
+                if (projectImage) {
+                    projectImage.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // Analytics tracking
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.btn, .filter-btn, .project-card')) {
+                console.log('User interaction:', e.target.className);
+            }
+        });
+
+        // Performance optimization
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        const debouncedSearch = debounce(function(value) {
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            filterProjects(activeFilter, value);
+        }, 300);
+
+        searchBox.addEventListener('input', function() {
+            debouncedSearch(this.value);
+        });
+
+        // Add accessibility improvements
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.setAttribute('role', 'button');
+            btn.setAttribute('aria-pressed', 'false');
+
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
+                this.setAttribute('aria-pressed', 'true');
+            });
+        });
+
+        // Project card click handlers
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking on a link
+                if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+                    const title = this.querySelector('.project-title').textContent;
+                    const description = this.querySelector('.project-description').textContent;
+                    showProjectModal(title, description);
+                }
+            });
+        });
+
+        function showProjectModal(title, description) {
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+
+            modalTitle.textContent = title;
+            modalBody.innerHTML = `
+                <p>${description}</p>
+                <p style="margin-top: 1rem; color: #4a5568;">Click on the project links to view source code or live demos.</p>
+            `;
+
+            modal.style.display = 'block';
+        }
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Random project highlights
+        function highlightRandomProject() {
+            const visibleCards = Array.from(projectCards).filter(card =>
+                card.style.display !== 'none' && card.classList.contains('show')
+            );
+
+            if (visibleCards.length > 0) {
+                // Remove previous highlight
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.style.boxShadow = '';
+                });
+
+                // Add highlight to random card
+                const randomCard = visibleCards[Math.floor(Math.random() * visibleCards.length)];
+                randomCard.style.boxShadow = '0 0 30px rgba(49, 130, 206, 0.3)';
+
+                setTimeout(() => {
+                    randomCard.style.boxShadow = '';
+                }, 2000);
+            }
+        }
+
+        // Highlight random project every 10 seconds
+        setInterval(highlightRandomProject, 10000);
+
+        // Error handling
+        window.addEventListener('error', function(e) {
+            console.log('Error caught:', e.error);
+        });
+
+        // Progressive enhancement
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            projectCards.forEach(card => observer.observe(card));
+        }
+
+        // Add project status tooltips
+        document.querySelectorAll('.project-status').forEach(status => {
+            const tooltips = {
+                'status-completed': 'This project is completed and fully functional',
+                'status-ongoing': 'This project is currently in development',
+                'status-planned': 'This project is planned for future development'
+            };
+
+            Object.keys(tooltips).forEach(className => {
+                if (status.classList.contains(className)) {
+                    status.title = tooltips[className];
+                }
+            });
+        });
+
+        // Add loading states for external links
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            link.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="animation: spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.25"/><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" opacity="0.75"/></svg> Loading...';
+
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 1000);
+            });
+        });
+
+        // Keyboard navigation for project cards
+        let currentProjectIndex = -1;
+        const visibleProjects = () => Array.from(projectCards).filter(card =>
+            card.style.display !== 'none' && card.classList.contains('show')
+        );
+
+        document.addEventListener('keydown', function(e) {
+            const projects = visibleProjects();
+
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                currentProjectIndex = (currentProjectIndex + 1) % projects.length;
+                focusProject(projects[currentProjectIndex]);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                currentProjectIndex = currentProjectIndex <= 0 ? projects.length - 1 : currentProjectIndex - 1;
+                focusProject(projects[currentProjectIndex]);
+            } else if (e.key === 'Enter' && currentProjectIndex >= 0) {
+                e.preventDefault();
+                projects[currentProjectIndex].click();
+            }
+        });
+
+        function focusProject(project) {
+            // Remove focus from other projects
+            projectCards.forEach(card => {
+                card.style.outline = 'none';
+                card.style.transform = '';
+            });
+
+            // Focus current project
+            if (project) {
+                project.style.outline = '3px solid #3182ce';
+                project.style.transform = 'translateY(-5px)';
+                project.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Reset focus when clicking
+        document.addEventListener('click', function() {
+            currentProjectIndex = -1;
+            projectCards.forEach(card => {
+                card.style.outline = 'none';
+            });
+        });
+
+        // Add project statistics
+        function updateProjectStats() {
+            const stats = {
+                total: projectCards.length,
+                completed: document.querySelectorAll('.status-completed').length,
+                ongoing: document.querySelectorAll('.status-ongoing').length,
+                planned: document.querySelectorAll('.status-planned').length
+            };
+
+            // Update counter animations with real data
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers[0].setAttribute('data-target', stats.total);
+            // Technologies count can be calculated from unique tags
+            const uniqueTechs = new Set();
+            document.querySelectorAll('.project-tag').forEach(tag => {
+                uniqueTechs.add(tag.textContent);
+            });
+            statNumbers[1].setAttribute('data-target', uniqueTechs.size);
+            statNumbers[2].setAttribute('data-target', stats.completed);
+        }
+
+        // Initialize stats
+        updateProjectStats();
+
+        // Add dynamic background for hero section
+        function createFloatingElements() {
+            const hero = document.querySelector('.projects-hero');
+            if (!hero) return;
+
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.style.position = 'absolute';
+                element.style.width = Math.random() * 20 + 10 + 'px';
+                element.style.height = element.style.width;
+                element.style.background = `rgba(255, 255, 255, ${Math.random() * 0.2 + 0.05})`;
+                element.style.borderRadius = Math.random() > 0.5 ? '50%' : '20%';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.animation = `float ${Math.random() * 15 + 10}s ease-in-out infinite`;
+                element.style.animationDelay = Math.random() * 5 + 's';
+                hero.appendChild(element);
+            }
+        }
+
+        // Initialize floating elements
+        setTimeout(createFloatingElements, 2000);
+
+        // Add print styles support
+        window.addEventListener('beforeprint', function() {
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.classList.add('show');
+                card.style.display = 'block';
+                card.style.pageBreakInside = 'avoid';
+            });
+        });
+
+        // Service worker registration (for future PWA features)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Service worker registration would go here
+            });
+        }
+    </script>
+</body>
+</html>
