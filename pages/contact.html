@@ -419,9 +419,10 @@
             transform: translateY(0);
         }
 
-        .submit-btn.loading {
+        .submit-btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
+            transform: none;
         }
 
         /* Success/Error Messages */
@@ -811,6 +812,40 @@
         .success-animation {
             animation: successPulse 0.6s ease-in-out;
         }
+
+        /* Progress bar */
+        .progress-bar {
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3182ce, #2c5aa0);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .character-counter {
+            font-size: 0.8rem;
+            color: #718096;
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+
+        /* Netlify success styles */
+        .netlify-success {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            color: #38a169;
+        }
     </style>
 </head>
 <body>
@@ -981,8 +1016,14 @@
                         </ul>
                     </div>
 
-                    <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <!-- Netlify Form -->
+                    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
                         <div id="formMessage" class="message"></div>
+
+                        <!-- Progress Bar -->
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
 
                         <!-- Hidden bot field for spam protection -->
                         <p style="display: none;">
@@ -1038,6 +1079,7 @@
                         <div class="form-group">
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" placeholder="Tell me about your project, opportunity, or what you'd like to discuss..." required></textarea>
+                            <div class="character-counter" id="characterCounter">0 characters</div>
                             <div class="error-message">Please enter your message</div>
                         </div>
 
@@ -1069,7 +1111,7 @@
             <div class="container">
                 <h2 class="section-title">My Location</h2>
                 <p class="section-subtitle">
-                    Currently based in Seoul, South Korea, while pursuing my Computer Engineering degree
+                    Currently based in Sokcho, South Korea, while pursuing my Computer Engineering degree
                 </p>
 
                 <div class="location-container">
@@ -1267,16 +1309,34 @@
             }, 3000);
         }
 
-        // Form Validation and Submission
-        const contactForm = document.getElementById('contactForm');
+        // Form validation and enhancement
+        const contactForm = document.querySelector('form[name="contact"]');
         const submitBtn = document.getElementById('submitBtn');
         const formMessage = document.getElementById('formMessage');
+        const progressFill = document.getElementById('progressFill');
+        const characterCounter = document.getElementById('characterCounter');
 
         // Real-time validation
         const formInputs = contactForm.querySelectorAll('input, textarea, select');
         formInputs.forEach(input => {
             input.addEventListener('blur', validateField);
             input.addEventListener('input', clearError);
+            input.addEventListener('input', updateProgress);
+        });
+
+        // Character counter for message field
+        const messageField = document.getElementById('message');
+        messageField.addEventListener('input', function() {
+            const count = this.value.length;
+            characterCounter.textContent = `${count} characters`;
+
+            if (count < 10) {
+                characterCounter.style.color = '#e53e3e';
+            } else if (count > 500) {
+                characterCounter.style.color = '#ed8936';
+            } else {
+                characterCounter.style.color = '#718096';
+            }
         });
 
         function validateField(e) {
@@ -1328,11 +1388,18 @@
             fieldGroup.classList.remove('error');
         }
 
-        // Form submission
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+        function updateProgress() {
+            const requiredFields = contactForm.querySelectorAll('[required]');
+            const filledFields = Array.from(requiredFields).filter(field => field.value.trim() !== '');
+            const progress = (filledFields.length / requiredFields.length) * 100;
+            progressFill.style.width = progress + '%';
+        }
 
-            // Validate all fields
+        // Form submission handling for Netlify
+        contactForm.addEventListener('submit', function(e) {
+            // Let Netlify handle the form submission naturally
+            // Just validate before allowing submission
+
             let isFormValid = true;
             formInputs.forEach(input => {
                 if (!validateField({ target: input })) {
@@ -1341,12 +1408,13 @@
             });
 
             if (!isFormValid) {
+                e.preventDefault();
                 showMessage('Please correct the errors above.', 'error');
-                return;
+                return false;
             }
 
             // Show loading state
-            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
             submitBtn.innerHTML = `
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="animation: spin 1s linear infinite;">
                     <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.25"/>
@@ -1355,33 +1423,7 @@
                 Sending...
             `;
 
-            // Simulate form submission (replace with actual form handling)
-            setTimeout(() => {
-                // Success simulation
-                showMessage('Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.', 'success');
-                contactForm.reset();
-                contactForm.classList.add('success-animation');
-
-                // Reset button
-                submitBtn.classList.remove('loading');
-                submitBtn.innerHTML = `
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
-                    </svg>
-                    Message Sent!
-                `;
-
-                setTimeout(() => {
-                    submitBtn.innerHTML = `
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                        </svg>
-                        Send Message
-                    `;
-                    contactForm.classList.remove('success-animation');
-                }, 3000);
-
-            }, 2000);
+            // Form will submit to Netlify automatically
         });
 
         function showMessage(text, type) {
@@ -1430,51 +1472,34 @@
             lastScrollTop = scrollTop;
         });
 
-        // Method card interactions
-        document.querySelectorAll('.method-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'linear-gradient(135deg, #ffffff, #f7fafc)';
-            });
+        // Smart suggestions for company field based on email domain
+        const emailField = document.getElementById('email');
+        const companyField = document.getElementById('company');
 
-            card.addEventListener('mouseleave', function() {
-                this.style.background = 'white';
-            });
-        });
+        const domainToCompany = {
+            'google.com': 'Google',
+            'microsoft.com': 'Microsoft',
+            'apple.com': 'Apple',
+            'amazon.com': 'Amazon',
+            'meta.com': 'Meta',
+            'netflix.com': 'Netflix',
+            'uber.com': 'Uber',
+            'airbnb.com': 'Airbnb',
+            'stripe.com': 'Stripe',
+            'github.com': 'GitHub',
+            'gitlab.com': 'GitLab'
+        };
 
-        // Auto-fill form based on URL parameters
-        function autoFillForm() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const subject = urlParams.get('subject');
-            const message = urlParams.get('message');
-
-            if (subject) {
-                document.getElementById('subject').value = subject;
-            }
-
-            if (message) {
-                document.getElementById('message').value = decodeURIComponent(message);
-            }
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            // Ctrl/Cmd + Enter to submit form
-            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-                if (document.activeElement.closest('#contactForm')) {
-                    e.preventDefault();
-                    contactForm.dispatchEvent(new Event('submit'));
-                }
-            }
-
-            // Escape to clear form
-            if (e.key === 'Escape') {
-                if (document.activeElement.closest('#contactForm')) {
-                    if (confirm('Clear the form?')) {
-                        contactForm.reset();
-                        formInputs.forEach(input => {
-                            input.closest('.form-group').classList.remove('error');
-                        });
-                    }
+        emailField.addEventListener('blur', function() {
+            const email = this.value.trim();
+            if (email && email.includes('@')) {
+                const domain = email.split('@')[1];
+                if (domainToCompany[domain] && !companyField.value) {
+                    companyField.value = domainToCompany[domain];
+                    companyField.style.background = '#f0fff4';
+                    setTimeout(() => {
+                        companyField.style.background = '#fafafa';
+                    }, 2000);
                 }
             }
         });
@@ -1487,7 +1512,6 @@
             const day = koreaTime.getDay();
 
             const availabilityStatus = document.querySelector('.availability-status');
-            const availabilityDot = document.querySelector('.availability-dot');
 
             // Business hours: Monday-Friday 9AM-6PM KST
             const isBusinessHours = (day >= 1 && day <= 5) && (hour >= 9 && hour <= 18);
@@ -1507,131 +1531,17 @@
             }
         }
 
-        // Character counter for message field
-        function addCharacterCounter() {
-            const messageField = document.getElementById('message');
-            const counterDiv = document.createElement('div');
-            counterDiv.style.cssText = `
-                font-size: 0.8rem;
-                color: #718096;
-                text-align: right;
-                margin-top: 0.25rem;
-            `;
-            messageField.parentNode.appendChild(counterDiv);
-
-            messageField.addEventListener('input', function() {
-                const count = this.value.length;
-                counterDiv.textContent = `${count} characters`;
-
-                if (count < 10) {
-                    counterDiv.style.color = '#e53e3e';
-                } else if (count > 500) {
-                    counterDiv.style.color = '#ed8936';
-                } else {
-                    counterDiv.style.color = '#718096';
-                }
-            });
-        }
-
-        // Form progress indicator
-        function addProgressIndicator() {
-            const form = document.getElementById('contactForm');
-            const progressBar = document.createElement('div');
-            progressBar.style.cssText = `
-                height: 4px;
-                background: #e2e8f0;
-                border-radius: 2px;
-                margin-bottom: 1.5rem;
-                overflow: hidden;
-            `;
-
-            const progressFill = document.createElement('div');
-            progressFill.style.cssText = `
-                height: 100%;
-                background: linear-gradient(90deg, #3182ce, #2c5aa0);
-                width: 0%;
-                transition: width 0.3s ease;
-                border-radius: 2px;
-            `;
-
-            progressBar.appendChild(progressFill);
-            form.insertBefore(progressBar, form.firstChild);
-
-            function updateProgress() {
-                const requiredFields = form.querySelectorAll('[required]');
-                const filledFields = Array.from(requiredFields).filter(field => field.value.trim() !== '');
-                const progress = (filledFields.length / requiredFields.length) * 100;
-                progressFill.style.width = progress + '%';
-            }
-
-            formInputs.forEach(input => {
-                input.addEventListener('input', updateProgress);
-            });
-        }
-
-        // Smart suggestions for company field based on email domain
-        function addSmartSuggestions() {
-            const emailField = document.getElementById('email');
-            const companyField = document.getElementById('company');
-
-            const domainToCompany = {
-                'google.com': 'Google',
-                'microsoft.com': 'Microsoft',
-                'apple.com': 'Apple',
-                'amazon.com': 'Amazon',
-                'meta.com': 'Meta',
-                'netflix.com': 'Netflix',
-                'uber.com': 'Uber',
-                'airbnb.com': 'Airbnb',
-                'stripe.com': 'Stripe',
-                'github.com': 'GitHub',
-                'gitlab.com': 'GitLab'
-            };
-
-            emailField.addEventListener('blur', function() {
-                const email = this.value.trim();
-                if (email && email.includes('@')) {
-                    const domain = email.split('@')[1];
-                    if (domainToCompany[domain] && !companyField.value) {
-                        companyField.value = domainToCompany[domain];
-                        companyField.style.background = '#f0fff4';
-                        setTimeout(() => {
-                            companyField.style.background = '#fafafa';
-                        }, 2000);
-                    }
-                }
-            });
-        }
-
         // Initialize all features
         document.addEventListener('DOMContentLoaded', function() {
-            autoFillForm();
             updateAvailabilityStatus();
-            addCharacterCounter();
-            addProgressIndicator();
-            addSmartSuggestions();
+            updateProgress();
 
             // Update availability status every minute
             setInterval(updateAvailabilityStatus, 60000);
         });
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
         // Contact method analytics (placeholder)
         function trackContactMethod(method) {
-            // This would typically send analytics data to your tracking service
             console.log(`Contact method used: ${method}`);
         }
 
@@ -1642,40 +1552,6 @@
                 trackContactMethod(method);
             });
         });
-
-        // Enhanced form validation with custom messages
-        function enhanceValidation() {
-            const emailField = document.getElementById('email');
-            const phoneField = document.getElementById('phone');
-
-            emailField.addEventListener('input', function() {
-                const email = this.value;
-                const errorMessage = this.closest('.form-group').querySelector('.error-message');
-
-                if (email && !email.includes('@')) {
-                    errorMessage.textContent = 'Please include @ in your email address';
-                } else if (email && email.includes('@') && !email.includes('.')) {
-                    errorMessage.textContent = 'Please include a domain (e.g., .com) in your email';
-                } else {
-                    errorMessage.textContent = 'Please enter a valid email address';
-                }
-            });
-
-            phoneField.addEventListener('input', function() {
-                const phone = this.value;
-                const errorMessage = this.closest('.form-group').querySelector('.error-message');
-
-                if (phone && phone.length < 8) {
-                    errorMessage.textContent = 'Phone number must be at least 8 digits';
-                } else if (phone && !/^[\+]?[0-9\s\-\(\)]{8,}$/.test(phone)) {
-                    errorMessage.textContent = 'Please enter a valid phone number';
-                } else {
-                    errorMessage.textContent = 'Please enter a valid phone number';
-                }
-            });
-        }
-
-        enhanceValidation();
     </script>
 </body>
 </html>
